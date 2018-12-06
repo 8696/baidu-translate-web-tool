@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="./assets/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/app.css">
+    <style>
+        pre {
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            border: none;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+<div class="menu">
+    <ul>
+        <li><a href="./index.html">首页</a></li>
+        <li><a href="./manual.html">手动</a></li>
+        <li><a href="./auto.html">自动</a></li>
+        <li><a href="./sm.html" class="active">说明</a></li>
+    </ul>
+</div>
+<div class="body-div" id="app">
+    <div class="row">
+        <pre>
+这是什么：
+    这不是什么！
+
+操作：
+    配置：
+        1.详见main/config.php文件
+
+    手动：
+        1.手动输入需要翻译的英文单词或者句子
+
+    自动：
+        1.输入一个文件夹路径，系统将自动扫描文件里面的中文。并完成自动翻译
+        2.文件类型，默认为空、将扫描全部文件类型。指定后将只扫描指定的文件类型
+
+    前缀：
+        1.翻译成功后会自动截取设置的最大key长度，可以指定前缀拼接
+
+    错误：
+        1.在自动翻译时后台报 Fatal error: Allowed memory size.. 可以在扫描文件类型指定扫描的类型进行过滤
+        2.其他错误代码如下：
+            52001	请求超时	重试
+            52002	系统错误	重试
+            52003	未授权用户	检查您的 appid 是否正确，或者服务是否开通
+            54000	必填参数为空	检查是否少传参数
+            54001	签名错误	请检查您的签名生成方法
+            54003	访问频率受限	请降低您的调用频率
+            54004	账户余额不足	请前往管理控制平台为账户充值
+            54005	长query请求频繁	请降低长query的发送频率，3s后再试
+            58000	客户端IP非法	检查个人资料里填写的 IP地址 是否正确可前往管理控制平台修改IP限制，IP可留空
+            58001	译文语言方向不支持	检查译文语言是否在语言列表里';
+        3.在自动翻译中后台报 Notice: iconv(): Detected an incomplete multibyte character in input string ..
+            可以在配置中设置该自动扫描的文件类型的编码格式
+
+
+    注意：
+        1.尽量在自动翻译中设置指定扫描文件类型
+
+
+
+
+联系QQ：
+    396983001
+        </pre>
+    </div>
+</div>
+</body>
+</html>

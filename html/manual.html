@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="./assets/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/app.css">
+    <script src="./assets/jquery-2.1.4.min.js"></script>
+    <script src="./assets/layer.js"></script>
+    <script src="./assets/vue.js"></script>
+</head>
+<body>
+<div class="menu">
+    <ul>
+        <li><a href="./index.html">首页</a></li>
+        <li><a href="./manual.html" class="active">手动</a></li>
+        <li><a href="./auto.html">自动</a></li>
+        <li><a href="./sm.html">说明</a></li>
+    </ul>
+</div>
+<div class="body-div" id="app">
+
+    <div class="row">
+        <div class="col-md-12">
+            <form id="form-box">
+
+                <div class="form-group">
+                    <label>输入中文</label>
+                    <textarea placeholder="多个使用 , 隔开" v-model="input" rows="6" class="form-control"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>前缀</label>
+                    <input v-model="prefix" type="text" class="form-control" placeholder="">
+                </div>
+
+                <button type="button" @click="translate()" class="btn btn-default">提交</button>
+                &nbsp;
+                <button type="button" @click="resetInput()" class="btn btn-default">清空</button>
+
+                <br>
+                <br>
+            </form>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <button @click="reload" style="" type="button" class="btn btn-default">刷新</button>
+    </div>
+    <div class="row" v-if="lang.length == 0">
+        <br>
+        <h4 style=" ">加载中...</h4>
+    </div>
+    <div class="row box-all" style="display: flex;margin-top: 10px;">
+
+        <div v-for="(item,l) in lang">
+            <h3 style=" ">{{l}} >>> {{Object.keys(lang[l])['length']}}</h3>
+            <br>
+            <p v-for="(val,key) in item">{{key}}--->> {{val}}</p>
+        </div>
+    </div>
+</div>
+
+
+</body>
+<script>
+    (function () {
+        new Vue({
+            el: '#app',
+            data: {
+                url: '../main/init.php',
+                lang: [],
+                input: '',
+                prefix: '',
+                isLoading: false
+            },
+            methods: {
+                init: function () {
+                    var _this = this;
+                    $.ajax({
+                        type: 'post',
+                        url: this.url,
+                        data: {
+                            type: 'getLang'
+                        },
+                        beforeSend: function () {
+                            if (_this.isLoading) {
+                                layer.load(1);
+                            }
+                            _this.isLoading = true;
+                        },
+                        complete: function () {
+                            layer.closeAll('loading');
+                        },
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        success: function (data) {
+                            try {
+                                _this.lang = JSON.parse(data);
+                                _this.getLast();
+                            } catch (e) {
+                                _this.error(data);
+                            }
+                        }
+                    });
+
+
+                },
+                translate: function () {
+                    var _this = this;
+                    $.ajax({
+                        type: 'post',
+                        url: this.url,
+                        data: {
+                            type: 'translate',
+                            input: _this.input,
+                            prefix: _this.prefix
+                        },
+                        beforeSend: function () {
+                            layer.load(1);
+                        },
+                        complete: function () {
+                            layer.closeAll('loading');
+                        },
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        success: function (data) {
+                            try {
+                                data = JSON.parse(data);
+                                layer.msg(data.msg);
+                                if (data.status === 1) {
+                                    _this.reload();
+                                }
+                            } catch (e) {
+                                _this.error(data);
+                            }
+                        }
+                    });
+                },
+                reload: function () {
+                    this.init();
+                },
+                getLast: function () {
+                    var _this = this;
+                    $.ajax({
+                        type: 'post',
+                        url: this.url,
+                        data: {
+                            type: 'getLast'
+                        },
+                        beforeSend: function () {
+                            if (_this.isLoading) {
+                                layer.load(1);
+                            }
+                            _this.isLoading = true;
+                        },
+                        complete: function () {
+                            layer.closeAll('loading');
+                        },
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        success: function (data) {
+                            try {
+                                _this.input = JSON.parse(data)['data'];
+                            } catch (e) {
+                                _this.error(data);
+                            }
+                        }
+                    });
+                },
+                resetInput: function () {
+                    var _this = this;
+                    $.ajax({
+                        type: 'post',
+                        url: this.url,
+                        data: {
+                            type: 'resetInput'
+                        },
+                        beforeSend: function () {
+                            if (_this.isLoading) {
+                                layer.load(1);
+                            }
+                            _this.isLoading = true;
+                        },
+                        complete: function () {
+                            layer.closeAll('loading');
+                        },
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        success: function (data) {
+                            try {
+                                _this.getLast();
+                            } catch (e) {
+                                _this.error(data);
+                            }
+                        }
+                    });
+                },
+                error: function (info) {
+                    layer.closeAll('loading');
+                    document.write('<h3>后台返回格式有错误：<br><br>' + info + '</h3>');
+                }
+            },
+            mounted: function () {
+                this.init();
+            }
+        });
+
+
+    }());
+
+</script>
+</html>

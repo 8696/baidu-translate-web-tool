@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.body-div {
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.body-div > .row {
+    margin: 0 15px;
+}
+
+textarea {
+    resize: none;
+}
+
+div {
+    padding: 0 !important;
+}
+
+.layui-layer-content {
+    padding: 10px 20px !important;
+}
+
+.menu {
+    width: 100%;
+    border-bottom: 1px solid #cccccc;
+    margin-bottom: 26px;
+}
+
+.menu ul {
+    list-style: none;
+    overflow: auto;
+    max-width: 1300px;
+    margin: 0 auto;
+    margin-bottom: 0;
+
+}
+
+.menu li .active {
+    font-weight: bold;
+}
+
+.menu li {
+    float: left;
+    margin: 10px;
+}
+
+.menu a {
+    color: #333;
+}
+
+textarea {
+    resize: none;
+}
+
+div {
+    padding: 0 !important;
+}
+
+.layui-layer-content {
+    padding: 10px 20px !important;
+}
+
+.loading-info h4, .loading-box h4 {
+    font-size: 16px;
+}
+
+.loading-info .right-float {
+    float: right;
+}
+
+.loading-info span:first-child {
+    padding-left: 10px;
+}
+
+.action-count-h-i-s {
+    float: right;
+}
+.box-all > div{
+    margin-left: 20px;
+}
+.box-all > div:first-child{
+    margin-left: 0;
+}
+/*呵呵*/
