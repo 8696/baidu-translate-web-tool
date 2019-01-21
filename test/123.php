@@ -40,4 +40,5 @@
   'automaticallyReadAndDisplayToT' => '自动读取并展示到前端',
   'chinese' => '中文',
   'hello' => '你好',
+  'howDoYouDo' => '你好啊',
 );

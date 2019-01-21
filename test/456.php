@@ -40,4 +40,5 @@
   'automaticallyReadAndDisplayToT' => 'Automatically read and display to the front end',
   'chinese' => 'Chinese',
   'hello' => 'Hello',
+  'howDoYouDo' => 'How do you do',
 );

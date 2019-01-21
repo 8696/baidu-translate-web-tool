@@ -40,4 +40,5 @@
   'automaticallyReadAndDisplayToT' => 'อ่านโดยอัตโนมัติและแสดงให้เห็นถึงด้านหน้า',
   'chinese' => 'ภาษาจีน',
   'hello' => 'สวัสดี',
+  'howDoYouDo' => 'สวัสดีครับ !',
 );
