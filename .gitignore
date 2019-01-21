@@ -1,4 +1,4 @@
-/backups
+backups
 .idea
-/main/class/last.json
-/test/*.php
+main/class/last.json
+test/
