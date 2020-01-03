@@ -16,8 +16,8 @@ define("BAIDU_FANYI_KEY", "yGWJ2O2hJvlNZZ2E6uW6");
 define("KEY_MAX_LENGTH", 30);
 //备份
 define("BACKUP", true);
-//防止过渡频繁请求导致失败的问题、每次请求间隔时间(秒、支持0.xx秒、建议0.05)
-define("ONE_REQUEST_SLEEP_TIME", 0.05);
+//防止过渡频繁请求导致失败的问题、每次请求间隔时间(秒、支持0.xx秒)
+define("ONE_REQUEST_SLEEP_TIME", 1);
 //自动翻译时文件格式编码
 define('TEXT_CODE', 'utf-8');   /* utf-8 | GBK */
 

@@ -1,3 +1,5 @@
 <?php return array (
-  'hello' => 'สวัสดี',
+  'hello' => 'สวัสดีค่ะ',
+  'happy' => 'ร่าเริง',
+  'toUpdate' => 'ต่ออายุ',
 );
